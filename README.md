@@ -1,2 +1,1 @@
-# mean-course
-Repo for MEAN course
+Simple Node.js server for testing purposes
