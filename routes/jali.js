@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var github = "https://github.com/jpir13/mean-course/";
+const github = "https://github.com/jpir13/mean-course/";
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
