@@ -1,1 +1,1 @@
-Simple Node.js server for testing purposes
+Simple Express.js app using MongoDB
