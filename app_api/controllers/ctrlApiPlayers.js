@@ -5,13 +5,23 @@ const mongoose = require('mongoose');
 const playerModel = mongoose.model('player');
 
 const playersList = function (req, res) {
-    res
-        .status(200)
-        .json({name:"player1", appearances:"10", goals:"13"});
+    playerModel.find({}, function (err, players) {
+        if (err) {
+            res.status(404).json(err);
+        } else {
+            res.status(200).json(players);
+        }
+    });
 };
 
 const addPlayer = function (req, res) {
-    res.status(201).json({name:"pekka", apperances:"15", goals:"15"});
+    playerModel.create(req.body, function (err, newPlayer) {
+        if (err) {
+            res.status(400).json(err);
+        } else {
+            res.status(201).json(newPlayer);
+        }
+    });
 };
 
 module.exports = {
