@@ -5,11 +5,11 @@ const mongoose = require('mongoose');
 const playerModel = mongoose.model('player');
 
 const playersList = function (_req, res) {
-    playerModel.find({}, function (err, player) {
+    playerModel.find({}, function (err, players) {
         if (err) {
             res.status(404).json(err);
         } else {
-            res.status(200).json(player);
+            res.status(200).json(players);
         }
     });
 };
