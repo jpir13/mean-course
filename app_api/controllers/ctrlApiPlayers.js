@@ -4,12 +4,12 @@ const mongoose = require('mongoose');
 // access to Players model
 const playerModel = mongoose.model('player');
 
-const playersList = function (req, res) {
-    playerModel.find({}, function (err, players) {
+const playersList = function (_req, res) {
+    playerModel.find({}, function (err, player) {
         if (err) {
             res.status(404).json(err);
         } else {
-            res.status(200).json(players);
+            res.status(200).json(player);
         }
     });
 };

@@ -6,6 +6,6 @@ const goalSchema = new mongoose.Schema({desc:String, embed:String});
 const recordSchema = new mongoose.Schema({year:String});
 
 // models containing compiled instances of the schemas
-mongoose.model('player', playerSchema, "Players by most appearances");
-mongoose.model('goal', goalSchema, "Beautiful goals");
-mongoose.model('record', recordSchema, "Serie A records");
+mongoose.model('player', playerSchema, "players");
+mongoose.model('goal', goalSchema, "goals");
+mongoose.model('record', recordSchema, "records");
