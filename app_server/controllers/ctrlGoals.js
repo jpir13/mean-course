@@ -1,10 +1,31 @@
+const request = require('request');
+const apiURL = require('./apiURLs');
+
 const goallist = function(req, res){
-    res.render('goals',{
-        goals:
-        [
-            {desc:'Totti against Inter 2005-2006', embed:'QxQWxNNHDuE'},
-            {desc:'Totti against Sampdoria in 2006-2007', embed:'G0GyYaI6DoU'}
-        ]});
+    const path = '/api/goals';
+    const requestOptions = {
+        url: apiURL.server + path,
+        methor: 'GET',
+        json: {},
+        qs: {}
+    };
+
+    request(
+        requestOptions,
+        function (err, response, body){
+            if(err){
+                res.render('error', {message: err.message});
+            } else if (response.statusCode !== 200){
+                res.render('error', {message: 'Error while accessing API: ' + response.statusMessage + " ("+ response.statusCode + ")" });
+            } else if (! (body instanceof Array)) {
+                res.render('error', {message: 'Unexpected response data'});
+            } else if (!body.length){
+                res.render('error', {message: 'No documents in collection'});
+            } else {
+                res.render('goals', {goals: body});
+            }
+        }
+    );
 };
 
 module.exports = {

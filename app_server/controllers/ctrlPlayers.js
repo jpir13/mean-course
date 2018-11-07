@@ -1,12 +1,33 @@
+const request = require('request');
+const apiURL = require('./apiURLs');
+
 const playerlist = function(req, res){
-    res.render('players',{
-        players:
-        [
-            {name:'Francesco Totti', appearances:'786', goals:'307'},
-            {name:'Daniele De Rossi', appearances:'588', goals:'61'},
-            {name:'Giacomo Losi', appearances:'455', goals:'2'}
-        ]});
+    const path = '/api/players';
+    const requestOptions = {
+        url: apiURL.server + path,
+        methor: 'GET',
+        json: {},
+        qs: {}
+    };
+
+    request(
+        requestOptions,
+        function (err, response, body){
+            if(err){
+                res.render('error', {message: err.message});
+            } else if (response.statusCode !== 200){
+                res.render('error', {message: 'Error while accessing API: ' + response.statusMessage + " ("+ response.statusCode + ")" });
+            } else if (! (body instanceof Array)) {
+                res.render('error', {message: 'Unexpected response data'});
+            } else if (!body.length){
+                res.render('error', {message: 'No documents in collection'});
+            } else {
+                res.render('players', {players: body});
+            }
+        }
+    );
 };
+
 module.exports = {
     playerlist
 };
