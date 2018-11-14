@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h3='Add a player'
+  p
+    form(action='', method='post')
+        label Name
+            input.form-control(name='name')
+        label Appearances
+            input.form-control(name='appearances')
+        label Goals
+            input.form-control(name='goals')
+        button.btn.btn-success Add

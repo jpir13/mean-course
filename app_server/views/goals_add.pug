@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h3='Add a golazo'
+  form(action='', method='post')
+    label Description
+        input.form-control(name='desc')
+    label YouTube embed code
+        input.form-control(name='embed')
+    button.btn.btn-success Add
