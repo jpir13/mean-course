@@ -1,11 +1,15 @@
 const request = require('request');
 const apiURL = require('./apiURLs');
 
+const showForm = function(req, res){
+    res.render('players_add');
+}
+
 const playerlist = function(req, res){
     const path = '/api/players';
     const requestOptions = {
         url: apiURL.server + path,
-        methor: 'GET',
+        method: 'GET',
         json: {},
         qs: {}
     };
@@ -28,6 +32,37 @@ const playerlist = function(req, res){
     );
 };
 
+const addPlayer = function(req, res){
+    const path = '/api/players';
+
+    const postData = {
+        name: req.body.name,
+        appearances: req.body.appearances,
+        goals: req.body.goals
+    };
+
+    const requestOptions = {
+        url: apiURL.server + path,
+        method: 'POST',
+        json: postData
+    };
+
+    request(
+        requestOptions,
+        function (err, response){
+            if (response.statusCode === 201) {
+                res.redirect('/players');
+            } else {
+                res.render('error', {message: 'Error adding data: ' +
+            response.statusMessage +
+            ' ('+ response.statusCode + ')'});
+            }
+        }
+    );
+};
+
 module.exports = {
-    playerlist
+    playerlist,
+    showForm,
+    addPlayer
 };

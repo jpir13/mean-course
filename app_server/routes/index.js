@@ -13,4 +13,22 @@ router.get('/records', ctrlLeagueRecords.scudettolist);
 router.get('/players', ctrlMostAppearences.playerlist);
 router.get('/goals/', ctrlGoals.goallist);
 
+// add scudetto
+router
+    .route('/records/add')
+    .get(ctrlLeagueRecords.showForm)
+    .post(ctrlLeagueRecords.addScudetto);
+
+// add players
+router
+    .route('/players/add')
+    .get(ctrlMostAppearences.showForm)
+    .post(ctrlMostAppearences.addPlayer);
+
+// add goals
+router
+    .route('/goals/add')
+    .get(ctrlGoals.showForm)
+    .post(ctrlGoals.addGoal);
+
 module.exports = router;
