@@ -24,7 +24,18 @@ const addRecord = function (req, res) {
     });
 };
 
+const deleteRecord = function (req, res) {
+    recordModel.findOneAndDelete(req.params.id, function (err) {
+        if (err) {
+            res.status(400).json(err);
+        } else {
+            res.send('Delete success');
+        }
+    });
+};
+
 module.exports = {
     recordsList,
-    addRecord
+    addRecord,
+    deleteRecord
 };
