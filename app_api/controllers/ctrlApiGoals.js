@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 // access to Goals model
 const goalModel = mongoose.model('goal');
 
-const goalsList = function (req, res) {
+const goalsList = function (_req, res) {
     goalModel.find({}, function (err, goals){
         if (err) {
             res.status(404).json(err);

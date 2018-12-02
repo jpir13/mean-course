@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 // access to Records model
 const recordModel = mongoose.model('record');
 
-const recordsList = function (req, res) {
+const recordsList = function (_req, res) {
     recordModel.find({}, function (err, records) {
         if (err) {
             res.status(404).json(err);
