@@ -5,8 +5,7 @@ block content
   ul
     each record in records
       li
-        a(href="/records/" + record._id, title=record.year)= record.year
+        = record.year
         form.hidden(method="delete", action="/api/records/" + record._id + "/delete")
           button.btn.btn-outline-danger.delete Delete
   a(href='/records/add') Add a scudetto
-  p ^ Use with care since every single one of them is already listed ;)
