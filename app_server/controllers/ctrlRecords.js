@@ -1,6 +1,12 @@
 const request = require('request');
 const apiURL = require('./apiURLs');
 
+// access to db
+const mongoose = require('mongoose');
+
+// access to Records model
+const recordModel = mongoose.model('record');
+
 const showForm = function(req, res){
     res.render('records_add');
 }
@@ -60,52 +66,15 @@ const addScudetto = function(req, res){
 };
 
 const delScudetto = function (req, res) {
-    const path = '/api/records/:id';
-
-    const delData = {
-        _id: req.params.id
-    };
-
-    const requestOptions = {
-        url: apiURL.server + path,
-        method: 'DELETE',
-        json: delData
-    };
-
-    request(
-        requestOptions,
-        function (err, response) {
-            if (response.statusCode === 200) {
-                res.redirect('/records');
-            } else {
-                res.render('error', {
-                    message: 'Error deleting data: ' +
-                        response.statusMessage +
-                        ' (' + response.statusCode + ')'
-                });
-            }
-        }
-    );
-};
-
-// defining delete function
-/*
-const delScudetto = function (req, res) {
-    recordModel.remove({
-        _id: req.params.id
-    }, function (err) {
+    recordModel.findOneAndDelete({_id: req.params.id}, function (err) {
         if (err) {
-            res.header("Access-Control-Allow-Headers", "Authorization, Origin, X-Requested-With, Content-Type, Accept");
-            res.header("Access-Control-Allow-Methods", "PATCH, POST, GET, PUT, DELETE, OPTIONS");
-            res.header("Access-Control-Allow-Methods", "POST, GET, DELETE");
-            res.header("Access-Control-Allow-Credentials", "true");
-            return res.send(err);
+            res.status(400).json(err);
         } else {
-            console.log("successfully deleted")
+            res.redirect('/records');
         }
-    })
-}
-*/
+    });
+    };
+
 module.exports = {
     scudettolist,
     showForm,
