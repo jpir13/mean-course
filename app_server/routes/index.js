@@ -19,6 +19,11 @@ router
     .get(ctrlLeagueRecords.showForm)
     .post(ctrlLeagueRecords.addScudetto);
 
+// del scudetto
+router
+    .route('/records/:id')
+    .delete(ctrlLeagueRecords.delScudetto);
+
 // add players
 router
     .route('/players/add')

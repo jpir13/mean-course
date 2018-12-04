@@ -6,6 +6,6 @@ block content
     each record in records
       li
         = record.year
-        form.hidden(method="delete", action="/api/records/" + record._id + "/delete")
+        form.hidden(method="POST", action="/records/" + record._id + "?_method=DELETE")
           button.btn.btn-outline-danger.delete Delete
   a(href='/records/add') Add a scudetto

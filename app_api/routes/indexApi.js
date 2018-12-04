@@ -21,7 +21,7 @@ router
     .post(ctrlApiRecords.addRecord);
 
 router
-    .route('/records/:id/delete')
+    .route('/records/:id')
     .delete(ctrlApiRecords.deleteRecord);
 
 module.exports = router;
