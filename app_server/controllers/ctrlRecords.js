@@ -60,7 +60,7 @@ const addScudetto = function(req, res){
 };
 
 const delScudetto = function (req, res) {
-    const path = '/api/records/';
+    const path = '/api/records/:id';
 
     const delData = {
         _id: req.params.id
