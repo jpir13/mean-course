@@ -5,4 +5,5 @@
 App highlights the glorious moments of AS Roma's history.
 
 ![Beautiful goals](https://github.com/jpir13/mean-course/raw/master/ss/goals.png "Beautiful goals")
-![Add a scudetto](https://github.com/jpir13/mean-course/raw/master/ss/addscudetto.png "Possibility to add a scudetto (predict the future!)")
+
+![Most appearances](https://github.com/jpir13/mean-course/raw/master/ss/players.png "Players with most appearances")
